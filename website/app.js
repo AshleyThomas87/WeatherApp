@@ -9,12 +9,26 @@ let newDate = d.getMonth()+'.'+ d.getDate()+'.'+ d.getFullYear();
 //
 // eventListener for generate button
 // Adds an event listener to an existing HTML button from DOM using Vanilla JS.
+const weatherButton= document.getElementById('generate');
+weatherButton.addEventListener("click",performAction);
+
+function performAction(e){
+const zip=document.getElementById('zip').value;
+const feelings=document.getElementById('feelings').value;
+  getWeatherInfo(apikey,url,zip)
+};
+
+
+ const getWeatherInfo = async(apikey,url,zip) => {
+    const res= await fetch(url+zip+",us&appid="+apikey)
+  }
+
 
 
 // code for button and functionality
 // In the file app.js, the element with the id of generate should have an addEventListener() method called on it, with click as the first parameter, and a named callback function as the second parameter.
 
-// GET 
+// GET u
 // setting up routes 
 // The API Key variable is passed as a parameter to fetch()
 // Data is successfully returned from the external API.

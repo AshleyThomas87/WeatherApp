@@ -2,11 +2,11 @@
 projectData = {};
 
 // Require Express to run server and routes
-var express = require('express');
-var bodyParser = require('body-parser');
+const express = require('express');
+const bodyParser = require('body-parser');
 
 // Start up an instance of app
-var app = express();
+const app = express();
 
 /* Middleware*/
 //Here we are configuring express to use body-parser as middle-ware.
@@ -14,7 +14,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 // Cors for cross origin allowance
-var cors = require('cors');
+const cors = require('cors');
 app.use(cors());
 
 // Initialize the main project folder
@@ -33,28 +33,24 @@ const server = app.listen(port, () => { console.log(`running on localhost: ${por
 // Return Endpoint Data
 // GET Route I: Server Side
 // There should be a GET route setup on the server side with the first argument as a string naming the route, and the second argument a callback function to return the JS object created at the top of server code.
-app.get('/', function (req, res) {
-    res.send('hello world');
-  })
+app.get('/all', getWeather);
+function getWeather (req, res) {
+    res.send('projectData');
+  }
 // POST
 // You should be able to add an entry to the project endpoint using a POST route setup on the server side and executed on the client side as an asynchronous function.
 // The server side function should create a new entry in the apps endpoint (the named JS object) consisting of the data received from the client side POST.
-app.post('/addAnimal', addAnimal);
+app.post('/add', addWeather);
 
-function addAnimal(req,res){
+function addWeather(req, res){
 
   newEntry = {
-    animal: req.body.animal,
-    facts: req.body.fact,
-    fav: req.body.fav
+    tempature: req.body.tempature,
+    date: req.body.date,
+    feelings: req.body.feelings
   }
 
-  animalData.push(newEntry)
-  console.log(animalData)
+  projectData.push(newEntry)
+  console.log(projectData)
 }
 
-// // POST method route
-app.post('/add', function (request, response) {
-    let data = request.body;
-    console.log(data);
-});
